@@ -1,0 +1,41 @@
+//created on: Jan 19, 2017
+package Pizza
+
+import Customers;
+import Pizzas;
+import Orders;
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "One free pizaa for first order of customer when bying two pizzas"	
+
+    when
+       //This appears to be a general problem: If I type random text in the rules editor and then attempt to switch to the RETE tree view, the same error appears. In the case of invalid rules, a diagnostic message would be better.
+       $c: Customers(orderCount == 0 ) //customer is new
+       $p1: Pizzas($size1: size, $name1: name)
+       $p2: Pizzas($size2: size, $name2: name)
+       $o1: Orders($pizzas1:pizza, $customers1: customer)
+       $o2: Orders($pizzas2:pizza, $customers2: customer)
+       $o3: Orders($size1 == $size2, $customers1 == $customers2, $customers1==$c)
+       // $o: Orders()
+    then
+        //Rule1
+       System.out.println("One free pizza for this customer.");
+	   $o3.TestRule1();
+end
+
+//rule "Your Second Rule"
+    //include attributes such as "salience" here...
+  //  when
+        //conditions
+    //then
+        //actions
+
+//end
